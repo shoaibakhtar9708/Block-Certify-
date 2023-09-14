@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import { Component, useState } from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -88,4 +88,27 @@ class App extends Component {
   }
 }
 
+
+
+
 export default App;
+
+// import React from 'react'
+// import Test from "./Components/Test";
+
+// const App = props => {
+//   return (
+//     <div className="App">
+//       <Routes>
+//         <Route
+//             exact path="/"
+//             Component={Home}
+//             layout="LANDING"
+//           />
+
+//     </Routes>
+//     </div>
+//   )
+// }
+
+// export default App
