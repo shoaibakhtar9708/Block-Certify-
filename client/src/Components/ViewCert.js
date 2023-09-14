@@ -11,9 +11,9 @@ import {
   TextField,
   Button,
   Fade,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+} from "@mui/material";
+import { makeStyles } from "@mui/material/styles";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 // import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,8 +37,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${
+      theme.spacing.unit * 3
+    }px`,
   },
 }));
 

@@ -1,24 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles, withStyles } from "@mui/styles"; // Updated imports
+import TextField from "@mui/material/TextField"; // Updated import
+import Paper from "@mui/material/Paper"; // Updated import
+import Grid from "@mui/material/Grid"; // Updated import
+import Typography from "@mui/material/Typography"; // Updated import
 import SubmitAnimation from "./SubmitAnimation";
 import { generateCertificate } from "../Utils/apiConnect";
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from "@mui/material/InputLabel"; // Updated import
+import MenuItem from "@mui/material/MenuItem"; // Updated import
+import FormControl from "@mui/material/FormControl"; // Updated import
+import Select from "@mui/material/Select"; // Updated import
+import NativeSelect from "@mui/material/NativeSelect"; // Updated import
+import InputBase from "@mui/material/InputBase"; // Updated import
+import FormHelperText from "@mui/material/FormHelperText"; // Updated import
 
-const styles = theme => ({
+const styles = (theme) => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -31,40 +31,41 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     [theme.breakpoints.up("sm")]: { width: 250 },
-    [theme.breakpoints.down("sm")]: { width: 200 }
+    [theme.breakpoints.down("sm")]: { width: 200 },
   },
   instituteField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     [theme.breakpoints.up("sm")]: { width: 520 },
-    [theme.breakpoints.down("sm")]: { width: 200 }
+    [theme.breakpoints.down("sm")]: { width: 200 },
   },
   dense: {
-    marginTop: 16
+    marginTop: 16,
   },
   menu: {
-    width: 200
+    width: 200,
   },
   paper: {
     [theme.breakpoints.down("sm")]: {
       margin: theme.spacing.unit,
-      padding: `${theme.spacing.unit * 2}px`
+      padding: `${theme.spacing.unit * 2}px`,
     },
     minHeight: "75vh",
     maxWidth: "95%",
     margin: theme.spacing.unit * 5,
     display: "flex",
     flexDirection: "column",
-    padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 8}px ${theme
-      .spacing.unit * 3}px`
+    padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 8}px ${
+      theme.spacing.unit * 3
+    }px`,
   },
   rightpaper: {
     [theme.breakpoints.up("sm")]: {
-      maxHeight: "75vh"
+      maxHeight: "75vh",
     },
     [theme.breakpoints.down("sm")]: {
       maxWidth: "95%",
-      margin: theme.spacing.unit * 2
+      margin: theme.spacing.unit * 2,
     },
     maxWidth: "60%",
     minWidth: "60%",
@@ -72,8 +73,9 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${
+      theme.spacing.unit * 3
+    }px`,
   },
   verificationBox: {
     display: "flex",
@@ -81,19 +83,19 @@ const styles = theme => ({
     alignItems: "center",
     justifyItems: "center",
     height: "100%",
-    marginTop: theme.spacing.unit * 3
+    marginTop: theme.spacing.unit * 3,
   },
   courseField: {
     [theme.breakpoints.up("sm")]: {
-      width: "60%"
+      width: "60%",
     },
     [theme.breakpoints.down("sm")]: {
-      minWidth: "80vw"
-    }
+      minWidth: "80vw",
+    },
   },
   submitBtn: {
-    marginLeft: "50px"
-  }
+    marginLeft: "50px",
+  },
 });
 
 class GenerateForm extends React.Component {
@@ -101,21 +103,22 @@ class GenerateForm extends React.Component {
     firstname: "",
     lastname: "",
     organization: "FossAsia",
-    orgLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/FOSSASIA_Logo.svg/600px-FOSSASIA_Logo.svg.png",
+    orgLogo:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/FOSSASIA_Logo.svg/600px-FOSSASIA_Logo.svg.png",
     coursename: "",
     assignedOn: null,
     duration: 0,
     currentState: "normal",
-    emailId: ""
+    emailId: "",
   };
 
-  handleChange = name => event => {
+  handleChange = (name) => (event) => {
     this.setState({
-      [name]: event.target.value
+      [name]: event.target.value,
     });
   };
 
-  submitData = event => {
+  submitData = (event) => {
     event.preventDefault();
     if (this.state.currentState === "validate") {
       return;
@@ -128,7 +131,7 @@ class GenerateForm extends React.Component {
       coursename,
       assignedOn,
       duration,
-      emailId
+      emailId,
     } = this.state;
     let candidateName = `${firstname} ${lastname}`;
     let assignDate = new Date(assignedOn).getTime();
@@ -140,15 +143,15 @@ class GenerateForm extends React.Component {
       parseInt(duration),
       emailId
     )
-      .then(data => {
-        console.log(data)
+      .then((data) => {
+        console.log(data);
         if (data.data !== undefined)
           this.setState({
             currentState: "validate",
-            certificateId: data.data.certificateId
+            certificateId: data.data.certificateId,
           });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   render() {
@@ -162,10 +165,10 @@ class GenerateForm extends React.Component {
       currentState,
       orgLogo,
       emailId,
-      certificateId
+      certificateId,
     } = this.state;
     return (
-      <Grid container align = "center" justify = "center" alignItems = "center">
+      <Grid container align="center" justify="center" alignItems="center">
         <Grid item xs={8} sm={8}>
           <Paper className={classes.paper}>
             <Typography variant="h3" color="inherit">
@@ -176,44 +179,44 @@ class GenerateForm extends React.Component {
               autoComplete="off"
               onSubmit={this.submitData}
             >
-            <Grid item xs={12} sm={12}>
-            <TextField
-              required
-              id="institute-name"
-              label="Institute Name"
-              className={classes.instituteField}
-              defaultValue={organization}
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                readOnly: true
-              }}
-            />
-            <TextField
-              required
-              id="institute-acronym"
-              label="Institute Acronym"
-              className={classes.instituteField}
-              defaultValue={organization}
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                readOnly: true
-              }}
-            />
-            <TextField
-              required
-              id="institute-website"
-              label="Institute Website"
-              className={classes.instituteField}
-              defaultValue={organization}
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                readOnly: true
-              }}
-            />
-            </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  required
+                  id="institute-name"
+                  label="Institute Name"
+                  className={classes.instituteField}
+                  defaultValue={organization}
+                  margin="normal"
+                  variant="outlined"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+                <TextField
+                  required
+                  id="institute-acronym"
+                  label="Institute Acronym"
+                  className={classes.instituteField}
+                  defaultValue={organization}
+                  margin="normal"
+                  variant="outlined"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+                <TextField
+                  required
+                  id="institute-website"
+                  label="Institute Website"
+                  className={classes.instituteField}
+                  defaultValue={organization}
+                  margin="normal"
+                  variant="outlined"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+              </Grid>
               <Grid item xs={12} sm={12}>
                 <TextField
                   required
@@ -236,8 +239,12 @@ class GenerateForm extends React.Component {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={12} >
-                <FormControl required variant="outlined" className={classes.formControl}>
+              <Grid item xs={12} sm={12}>
+                <FormControl
+                  required
+                  variant="outlined"
+                  className={classes.formControl}
+                >
                   <InputLabel htmlFor="course-name">Course Name</InputLabel>
                   <Select
                     native
@@ -245,8 +252,8 @@ class GenerateForm extends React.Component {
                     onChange={this.handleChange("coursename")}
                     label="Age"
                     inputProps={{
-                      course:'',
-                      id:'course-name'
+                      course: "",
+                      id: "course-name",
                     }}
                   >
                     <option aria-label="None" value="" />
@@ -275,13 +282,12 @@ class GenerateForm extends React.Component {
           </Paper>
         </Grid>
       </Grid>
-
     );
   }
 }
 
 GenerateForm.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(GenerateForm);

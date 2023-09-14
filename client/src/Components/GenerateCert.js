@@ -3,31 +3,26 @@ import Institution from "../contracts/Institution.json";
 import Certification from "../contracts/Certification.json";
 import Web3 from "web3";
 import { v4 as uuidv4 } from "uuid";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import TextField from "@mui/material/TextField"; // Updated import
+import Paper from "@mui/material/Paper"; // Updated import
+import Grid from "@mui/material/Grid"; // Updated import
+import Typography from "@mui/material/Typography"; // Updated import
 import SubmitAnimation from "./SubmitAnimation";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
-import InputBase from "@material-ui/core/InputBase";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import CryptoJS from "crypto-js";
+import InputLabel from "@mui/material/InputLabel"; // Updated import
+import FormControl from "@mui/material/FormControl"; // Updated import
+import Select from "@mui/material/Select"; // Updated import
 import { encrypt } from "./encrypt";
-import withStyles from "@material-ui/core/styles/withStyles";
-import AppBar from "@material-ui/core/AppBar";
-import Tab from "@material-ui/core/Tab";
-import Tabs from "@material-ui/core/Tabs";
-import Button from "@material-ui/core/Button";
-import OpenInNewOutlinedIcon from '@mui/icons-material/OpenInNew';
-import FileCopyOutlinedIcon from '@mui/icons-material/FileCopy';
-import { Box, IconButton, CircularProgress } from "@material-ui/core";
+import withStyles from "@mui/material/styles/withStyles"; // Updated import
+import AppBar from "@mui/material/AppBar"; // Updated import
+import Tab from "@mui/material/Tab"; // Updated import
+import Tabs from "@mui/material/Tabs"; // Updated import
+import Button from "@mui/material/Button"; // Updated import
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNew"; // Updated import
+import FileCopyOutlinedIcon from "@mui/icons-material/FileCopy"; // Updated import
+import { Box, IconButton, CircularProgress } from "@mui/material"; // Updated import
 import { Error } from "./Error";
 import { Loader } from "./Loader";
-import LoopOutlinedIcon from '@mui/icons-material/Loop';
+import LoopOutlinedIcon from "@mui/icons-material/Loop"; // Updated import
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -116,8 +111,9 @@ const styles = (theme) => ({
     margin: theme.spacing.unit * 5,
     display: "flex",
     flexDirection: "column",
-    padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 8}px ${theme
-      .spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 8}px ${
+      theme.spacing.unit * 3
+    }px`,
     marginTop: "20px",
   },
   rightpaper: {
@@ -134,8 +130,9 @@ const styles = (theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${
+      theme.spacing.unit * 3
+    }px`,
   },
   verificationBox: {
     display: "flex",
@@ -357,7 +354,7 @@ class GenerateCert extends React.Component {
       await certification.methods
         .revokeCertificate(revokeCertificateId)
         .send({ from: caller, gas: 2100000 })
-        .on("receipt", function(receipt) {
+        .on("receipt", function (receipt) {
           // ----- here can use a state or smth, to display a success message -----
           console.log(receipt);
           console.log(receipt.events);
@@ -380,7 +377,7 @@ class GenerateCert extends React.Component {
         revokeTxnFailed: true,
         revokeCertificateId: revokeCertificateId,
       });
-      if (error.code == -32603) {
+      if (error.code === -32603) {
         // -32603:
         // 1) certificate id already exists - won't encounter this
         // 2) transaction failed due to gas problems
@@ -391,7 +388,7 @@ class GenerateCert extends React.Component {
           "❌ Revocation Transaction failed. Please check that certificate id exists and you have set enough gas limit."
         );
       }
-      if (error.code == 4001) {
+      if (error.code === 4001) {
         // window.alert("Transaction rejected");
         toast.error("❌ Revocation Transaction rejected!");
       }
@@ -436,7 +433,7 @@ class GenerateCert extends React.Component {
           encrypt(creationDate, certId)
         )
         .send({ from: caller, gas: 2100000 })
-        .on("receipt", function(receipt) {
+        .on("receipt", function (receipt) {
           console.log(receipt);
         })
         .then((res) => {
@@ -456,7 +453,7 @@ class GenerateCert extends React.Component {
         txnFailed: true,
         certificateId: certId,
       });
-      if (error.code == -32603) {
+      if (error.code === -32603) {
         // -32603:
         // 1) certificate id already exists - won't encounter this
         // 2) transaction failed due to gas problems
@@ -467,7 +464,7 @@ class GenerateCert extends React.Component {
           "❌ Transaction failed. Please check that you have set enough gas limit."
         );
       }
-      if (error.code == 4001) {
+      if (error.code === 4001) {
         // window.alert("Transaction rejected");
         toast.error("❌ Transaction rejected!");
       }

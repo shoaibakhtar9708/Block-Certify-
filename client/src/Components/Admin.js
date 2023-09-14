@@ -1,63 +1,37 @@
 import React from "react";
 import Institution from "../contracts/Institution.json";
 import Web3 from "web3";
-import { TextField } from '@mui/material';
-import Button from "@material-ui/core/Button";
-import { Form } from "react-bootstrap";
-import Grid from "@material-ui/core/Grid";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import { Loader } from "./Loader";
 import { Error } from "./Error";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  withStyles,
-  Box,
-  Card,
-  CardContent,
-  CardActions,
-  IconButton,
-} from "@material-ui/core";
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import AppsIcon from '@mui/icons-material/Apps';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
+import { withStyles, Box, Card, CardContent, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PropTypes from "prop-types";
-import Avatar from "@material-ui/core/Avatar";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import { InputAdornment } from "@material-ui/core";
-import LockIcon from '@mui/icons-material/Lock';
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-// import withStyles from "@material-ui/core/styles/withStyles";
-import ChainImage from "../Images/chainT.png";
-import {Link} from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContentText from "@material-ui/core/DialogContentText";
+import FormControl from "@mui/material/FormControl";
+import Input from "@mui/material/Input";
+import InputLabel from "@mui/material/InputLabel";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContentText from "@mui/material/DialogContentText";
 
-const ListText = withStyles({
-  primary: {
-    fontSize: "1.5vh",
-    padding: "0.5vh",
-    margin: 0,
-    width: "90%",
-  },
-})(ListItemText);
+// const ListText = withStyles({
+//   primary: {
+//     fontSize: "1.5vh",
+//     padding: "0.5vh",
+//     margin: 0,
+//     width: "90%",
+//   },
+// })(ListItemText);
 
 const styles = (theme) => ({
   container: {
@@ -78,8 +52,9 @@ const styles = (theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${
+      theme.spacing.unit * 3
+    }px`,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -89,8 +64,9 @@ const styles = (theme) => ({
     marginTop: theme.spacing.unit * 3,
   },
   media: {
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${
+      theme.spacing.unit * 3
+    }px`,
   },
   imgstyles: {
     maxWidth: "70vw",
@@ -105,7 +81,6 @@ const styles = (theme) => ({
     borderRadius: "100px",
     marginBottom: "10px",
     paddingLeft: "25px",
-    marginBottom: "10px",
     border: "1px solid #d8d8d8",
   },
 });
@@ -193,7 +168,7 @@ class Admin extends React.Component {
           let smartContractOwner = await institution.methods.owner().call();
           console.log("smartContractOwner", smartContractOwner);
           // compare the caller and the owner of smart contract
-          if (caller == smartContractOwner) {
+          if (caller === smartContractOwner) {
             // give access to the page
             this.setState({
               renderLoading: false,
@@ -293,7 +268,7 @@ class Admin extends React.Component {
       let smartContractOwner = await institution.methods.owner().call();
 
       // compare the caller and the owner of smart contract
-      if (caller == smartContractOwner) {
+      if (caller === smartContractOwner) {
         await institution.methods
           .addInstitute(
             this.state.instituteAddress,
@@ -303,7 +278,7 @@ class Admin extends React.Component {
             convertToBlockChainStruct
           )
           .send({ from: caller })
-          .on("receipt", function(receipt) {
+          .on("receipt", function (receipt) {
             console.log(receipt);
             console.log(receipt.events);
           })
@@ -328,10 +303,10 @@ class Admin extends React.Component {
     } catch (error) {
       console.log(error);
       console.log(error.code);
-      if (error.code == -32603) {
+      if (error.code === -32603) {
         // window.alert("Institute account already exits");
         toast.error("❌ Institute account already exits!");
-      } else if (error.code == 4001) {
+      } else if (error.code === 4001) {
         // window.alert("Transaction rejected");
         toast.warning("❕ Transaction rejected!");
       } else {
@@ -381,7 +356,7 @@ class Admin extends React.Component {
   deleteCourse(keyToDelete) {
     console.log("delete getting called");
     const courses = new Map(
-      [...this.state.instituteCourses].filter(([k, v]) => k != keyToDelete)
+      [...this.state.instituteCourses].filter(([k, v]) => k !== keyToDelete)
     );
     this.setState({
       instituteCourses: courses,

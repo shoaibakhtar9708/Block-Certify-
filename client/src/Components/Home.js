@@ -5,15 +5,8 @@ import { Link } from "react-router-dom";
 import BlockchainCredentialsImage from "../Images/blockchain_credentials.png";
 
 // External Components
-import {
-  Paper,
-  Grid,
-  Box,
-  Button,
-  useMediaQuery,
-  Typography,
-} from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Grid, Box, Button, useMediaQuery, Typography } from "@mui/material";
+import { useTheme, makeStyles } from "@mui/material/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {

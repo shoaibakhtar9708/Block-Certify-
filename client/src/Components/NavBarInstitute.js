@@ -1,25 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import withStyles from "@material-ui/core/styles/withStyles";
-import HomeIcon from '@mui/icons-material/Home';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-// import MailIcon from "@material-ui/icons/Mail";
-// import NotificationsIcon from "@material-ui/icons/Notifications";
-import MoreIcon from '@mui/icons-material/MoreVert';
-import {Link} from "react-router-dom";
-import { default as CertifyIcon } from "@mui/icons-material/AccountBalanceWallet";
-import LinkIcon from '@mui/icons-material/Link';
+import AppBar from "@mui/material/AppBar"; // Updated import
+import Toolbar from "@mui/material/Toolbar"; // Updated import
+import IconButton from "@mui/material/IconButton"; // Updated import
+import Button from "@mui/material/Button"; // Updated import
+import Typography from "@mui/material/Typography"; // Updated import
+import InputBase from "@mui/material/InputBase"; // Updated import
+import Badge from "@mui/material/Badge"; // Updated import
+import MenuItem from "@mui/material/MenuItem"; // Updated import
+import Menu from "@mui/material/Menu"; // Updated import
+import { fade } from "@mui/material/styles"; // Updated import
+import withStyles from "@mui/material/styles/withStyles"; // Updated import
+import HomeIcon from "@mui/icons-material/Home"; // Updated import
+import SearchIcon from "@mui/icons-material/Search"; // Updated import
+import AccountCircle from "@mui/icons-material/AccountCircle"; // Updated import
+import MoreIcon from "@mui/icons-material/MoreVert"; // Updated import
+import { Link } from "react-router-dom";
+import CertifyIcon from "@mui/icons-material/AccountBalanceWallet"; // Updated import
+import LinkIcon from "@mui/icons-material/Link"; // Updated import
 
 const styles = (theme) => ({
   root: {

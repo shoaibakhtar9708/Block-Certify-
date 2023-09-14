@@ -18,12 +18,14 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-} from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import CancelIcon from '@mui/icons-material/Cancel';
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
+// import { makeStyles } from "@mui/styles";
+import { useTheme, makeStyles } from "@mui/material/styles";
+
+import CancelIcon from "@mui/icons-material/Cancel";
 // import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 // Smart Contract essentials
@@ -102,8 +104,7 @@ function CertificateDisplay() {
     instituteAcronym: "",
     instituteLink: "",
     revoked: null,
-    logo:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/FOSSASIA_Logo.svg/600px-FOSSASIA_Logo.svg.png",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/FOSSASIA_Logo.svg/600px-FOSSASIA_Logo.svg.png",
   };
   const [certData, setCertData] = useState(certTemplate);
   const [loading, setLoading] = useState(true);
@@ -131,7 +132,7 @@ function CertificateDisplay() {
     CertificationInstance.setProvider(web3.currentProvider);
     // hack for web3@1.0.0 support for localhost testrpc, see https://github.com/trufflesuite/truffle-contract/issues/56#issuecomment-331084530
     if (typeof CertificationInstance.currentProvider.sendAsync !== "function") {
-      CertificationInstance.currentProvider.sendAsync = function() {
+      CertificationInstance.currentProvider.sendAsync = function () {
         return CertificationInstance.currentProvider.send.apply(
           CertificationInstance.currentProvider,
           arguments
